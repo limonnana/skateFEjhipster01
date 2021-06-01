@@ -1,0 +1,52 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+
+        <h4>New  Tip </h4>
+        <form name="contributionForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="contributionForm">
+           
+
+            
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_amount">Amount</label>
+                    <input type="text" class="form-control" name="amount" id="amount"
+                           formControlName="amount"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_trick">Trick</label>
+                    <select class="form-control" id="field_trick" name="trick" formControlName="trick">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="trickOption.id === contributionForm.get('trick')!.value?.id ? contributionForm.get('trick')!.value : trickOption" *ngFor="let trickOption of tricks; trackBy: trackById">{{ trickOption.name }}</option>
+                       
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_user">Full Name</label>
+                    <input formControlName="user"
+                    name="user" id="user"
+                    [typeahead]="users"
+                    typeaheadOptionField="firstName"
+                    [typeaheadOptionsLimit]="7"
+                    [typeaheadMinLength]="0"
+                    placeholder="AutoComplete"
+                    (typeaheadOnSelect)="onSelect($event)"
+                    class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_phone">Phone</label>
+                    <input type="text" class="form-control" name="phone" id="phone"
+                           formControlName="phone"/>
+                </div>
+
+               
+           <button type="submit" id="save-entity" [disabled]="contributionForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            
+        </form>
+    </div>
+</div>

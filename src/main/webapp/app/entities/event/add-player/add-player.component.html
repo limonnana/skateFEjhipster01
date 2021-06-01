@@ -1,0 +1,34 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="addPlayerForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="addPlayerForm">
+            <h3 id="jhi-event-heading">New player for: {{event?.name}} </h3> 
+
+           
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!addPlayerForm.get('id')!.value">
+                    
+                    <input type="text" hidden class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_player">Player</label>
+                    <select class="form-control" id="field_player" name="player" formControlName="player">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="playerOption.id === addPlayerForm.get('player')!.value?.id ? addPlayerForm.get('player')!.value : playerOption" *ngFor="let playerOption of players; trackBy: trackById">{{ playerOption.user?.firstName }} &nbsp; {{ playerOption.user?.lastName }}</option>
+                    </select>
+                </div>
+
+                <div>
+                    <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                        <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+                    </button>
+    
+                    <button type="submit" id="save-entity" [disabled]="addPlayerForm.invalid || isSaving" class="btn btn-primary">
+                        <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+

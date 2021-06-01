@@ -1,0 +1,70 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="spot">
+            <h2><span>Spot:</span> {{ spot.name }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+           
+                    <div>{{ spot.description }}</div>
+
+                    <div *ngIf='isPhotoBig1'>
+                        <img [src]='photoBig1' class="img-thumbnail"> 
+                        <br>
+                        <button type="submit" (click)="delete('photo_big_1')"
+                        class="btn btn-danger btn-sm">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline">Delete</span>
+                </button>
+                </div>
+                        
+                        <br><br>
+                        <div *ngIf='isPhotoMedium2'>
+                        <img [src]="photoMedium2" class="img-thumbnail"> 
+                          <br>
+                          <button type="submit" (click)="delete('photo_medium_2')"
+                                               class="btn btn-danger btn-sm">
+                                           <fa-icon icon="times"></fa-icon>
+                                           <span class="d-none d-md-inline">Delete</span>
+                           </button>
+                          </div>
+                          <br><br>
+                       <div *ngIf='isPhotoMedium3'>
+                       <img [src]="photoMedium3" class="img-thumbnail"> 
+                         <br>
+                         <button type="submit" (click)="delete('photo_medium_3')"
+                                               class="btn btn-danger btn-sm">
+                                           <fa-icon icon="times"></fa-icon>
+                                           <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                        </div>
+                         <br>
+                         <br>
+                         <br>          
+               
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/spot', spot.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+            
+            <button type="button"
+            [routerLink]="['/spot', spot.id, 'addImageToSpot']"
+            class="btn btn-primary">
+           <fa-icon icon="plus"></fa-icon>
+           <span>Add Image</span>
+           </button>
+
+
+        </div>
+    </div>
+</div>

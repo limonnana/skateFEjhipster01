@@ -1,0 +1,41 @@
+<div class="row">
+    <div class="col-md-3">
+        <span class="hipster img-fluid rounded"></span>
+    </div>
+
+    <div class="col-md-9">
+        <div [ngSwitch]="isAuthenticated()">
+            <div  *ngSwitchCase="true">
+        <ul>
+            <li><a routerLink="/home">Status: tricks and tips</a></li>
+            <li><a routerLink="/new-contribution">add New Tip </a></li>
+            
+        </ul>
+            </div>
+        
+        <div *ngSwitchCase="false"></div>
+    </div>
+       <br> &nbsp; </br>
+
+        <div [ngSwitch]="isAuthenticated()">
+            <div class="alert alert-success" *ngSwitchCase="true">
+                <span id="home-logged-message" *ngIf="account">You are logged in as "{{ account.login }}".</span>
+            </div>
+
+            <div class="alert alert-warning" *ngSwitchCase="false">
+                <span>If you want to </span>
+                <a class="alert-link" (click)="login()" >sign in</a>
+            </div>
+
+            
+        </div>
+      </div>
+        
+
+       
+
+        
+    </div>
+</div>
+
+

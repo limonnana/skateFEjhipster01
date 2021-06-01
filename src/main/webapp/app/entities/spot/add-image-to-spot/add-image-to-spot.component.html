@@ -1,0 +1,28 @@
+<form [formGroup]="addImageForm" (ngSubmit)="submit()">
+
+    
+    <div class="form-group">
+        <label class="form-control-label" for="title">Title</label>
+        <select class="form-control" id="title" name="title" formControlName="title">
+            <option [ngValue]="null">Choose picture title</option>
+            <option *ngFor="let titleOption of titles">{{ titleOption }}</option>
+        </select>
+    </div>
+      
+    <div class="form-group">
+        <label for="file">Image File</label>
+        <input 
+            formControlName="file"
+            id="file" 
+            type="file" 
+            class="form-control"
+            (change)="handleFileSelect($event)">
+        <div *ngIf="f.file.touched && f.file.invalid" class="alert alert-danger">
+            <div *ngIf="f.file.errors.required">File is required.</div>
+        </div>
+    </div>
+    
+    <img [src]="imageSrc" *ngIf="imageSrc" style="height: 300px; width:500px">
+        
+    <button class="btn btn-primary" type="submit">Submit</button>
+</form>

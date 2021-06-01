@@ -1,0 +1,132 @@
+
+ <div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="event">
+            <h2> {{ event.name }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <div style="margin-bottom: 25px;">
+               <b> Spot: {{ event.spot?.name }} Date: {{ event.dayString }}</b>
+            </div>
+
+            <div *ngIf='isPhotoBig1'>
+             <img [src]='photoBig1' class="img-thumbnail"> 
+             <br>
+             <button type="submit" (click)="delete('photo_big_1')"
+             class="btn btn-danger btn-sm">
+         <fa-icon icon="times"></fa-icon>
+         <span class="d-none d-md-inline">Delete</span>
+     </button>
+     </div>
+             
+             <br><br>
+             <div *ngIf='isPhotoMedium2'>
+             <img [src]="photoMedium2" class="img-thumbnail"> 
+               <br>
+               <button type="submit" (click)="delete('photo_medium_2')"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                </button>
+               </div>
+               <br><br>
+            <div *ngIf='isPhotoMedium3'>
+            <img [src]="photoMedium3" class="img-thumbnail"> 
+              <br>
+              <button type="submit" (click)="delete('photo_medium_3')"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+             </button>
+             </div>
+              <br>
+              <br>
+              <br>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/event', event.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+
+            <button type="submit"
+            [routerLink]="['/event', event.id, 'addTrickToEvent']"
+            class="btn btn-primary">
+           <fa-icon icon="plus"></fa-icon>
+           <span>Add Trick</span>
+           </button>
+
+           <button type="submit"
+            [routerLink]="['/event', event.id, 'addPlayerToEvent']"
+            class="btn btn-primary">
+           <fa-icon icon="plus"></fa-icon>
+           <span>Add Player</span>
+           </button>
+
+           <button type="submit"
+           [routerLink]="['/event', event.id, 'addImageToEvent']"
+           class="btn btn-primary">
+          <fa-icon icon="plus"></fa-icon>
+          <span>Add Image</span>
+          </button>
+       
+    
+    <div style="margin-top: 30px;">&nbsp;</div>
+    <div class="table-responsive" id="entities" *ngIf="tricks && tricks.length > 0">
+        <h3>Tricks</h3>
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    
+                    <th scope="col" ><span>Name</span></th>
+                    <th scope="col" ><span>Current Amount</span></th>
+                    <th scope="col" ><span>Target Amount</span></th>
+                   
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let trick of tricks ;trackBy: trackId">
+                  
+                    <td><a [routerLink]="['/trick', trick.id, 'view']">{{ trick.name }}</a></td>
+                    <td>{{ trick.currentAmount }}</td>
+                    <td>{{ trick.objectiveAmount }}</td>
+                   
+                </tr>
+            </tbody>
+        </table>
+        </div>
+
+        <div style="margin-top: 30px;">&nbsp;</div>
+    <div class="table-responsive" id="entities" *ngIf="players && players.length > 0">
+        <h3>Players</h3>
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span>Name</span></th>
+                    <th scope="col" ><span>Last Name</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let player of players ;trackBy: trackPlayerId">
+                    <td><a [routerLink]="['/player', player.id, 'view']">{{ player.user?.firstName }}</a></td>
+                    <td>{{ player.user?.lastName }}</td>
+                   
+                </tr>
+            </tbody>
+        </table>
+        </div>
+    
+    </div>
+   
+    </div>
+
+</div>

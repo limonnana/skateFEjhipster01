@@ -1,0 +1,31 @@
+    <div>
+        <br><br>
+    
+        <jhi-alert-error></jhi-alert-error>
+    
+        <jhi-alert></jhi-alert>
+    
+        <div class="alert alert-warning" id="no-result" *ngIf="tricks?.length === 0">
+            <span>No tricks found</span>
+        </div>
+    
+        <div class="table-responsive" id="entities" *ngIf="tricks && tricks.length > 0">
+            <table class="table table-striped" aria-describedby="page-heading">
+                <thead>
+                    <tr>
+                        <th scope="col" ><span>Tricks</span></th>
+                        <th scope="col" ><span>Current Amount</span></th>
+                        <th scope="col" ><span>Target Amount</span></th>
+                       
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let trick of tricks ;trackBy: trackId">
+                        <td><a [routerLink]="['/trick', trick.id, 'view']">{{ trick.name }}</a></td>
+                        <td>{{ trick.currentAmount }}</td>
+                        <td>{{ trick.objectiveAmount }}</td>
+                        </tr>
+                        </tbody>
+            </table>
+        </div>
+</div>

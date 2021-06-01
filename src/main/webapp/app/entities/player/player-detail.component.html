@@ -1,0 +1,47 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="player">
+            <h4>Player</h4>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Name</span></dt>
+                <dd>
+                    <span>{{ player.user?.firstName }}</span>
+                </dd>
+                <dt><span>Last Name</span></dt>
+                <dd>
+                    <span>{{ player.user?.lastName }}</span>
+                </dd>
+                <dt><span>Email</span></dt>
+                <dd>
+                    <span>{{ player.user?.email }}</span>
+                </dd>
+                <dt><span>Phone</span></dt>
+                <dd>
+                    <span>{{ player.user?.phone }}</span>
+                </dd>
+                <dt><span>Country</span></dt>
+                <dd>
+                    <span>{{ player.user?.country }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/player', player.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+
+        </div>
+    </div>
+</div>
